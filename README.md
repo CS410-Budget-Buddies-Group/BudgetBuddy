@@ -1,2 +1,2 @@
-# Budget-Buddy
+# BudgetBuddy
 A budget tracking app!
