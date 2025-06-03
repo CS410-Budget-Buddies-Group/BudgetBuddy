@@ -9,7 +9,7 @@ export default function Router() {
 	const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 	return (
-		<HashRouter basename='/'>
+		<HashRouter basename='/BudgetBuddy'>
 			<Routes>
 				<Route path='/' element={<HomePage />} />
 				<Route path='*' element={<NotFoundPage />} />
