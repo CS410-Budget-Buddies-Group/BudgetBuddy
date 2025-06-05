@@ -1,24 +1,22 @@
 import React from 'react';
-import './css/App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
 
 function App() {
-	return (
-		<div className="App">
-			<header className="App-header">
-				<p>
-					Edit <code>src/App.tsx</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-			</header>
-		</div>
-	);
+  const isLoggedIn = true; // Replace with real auth logic
+
+  return (
+    <Router>
+      <div className="min-h-screen flex flex-col">
+        <header className="bg-blue-600 text-white px-6 py-4 text-2xl font-bold">💰 Budget Buddy</header>
+        <Routes>
+          <Route path="/" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

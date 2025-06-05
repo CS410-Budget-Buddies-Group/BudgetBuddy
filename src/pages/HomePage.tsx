@@ -1,9 +1,13 @@
+import Navbar from "../components/Navbar";
 import "../css/HomePage.css";
 
 export default function HomePage() {
 	return (
 		<div className="home-page">
-			<img src="/BudgetBuddy/Chill Budget Buddy.png" alt="" />
+			<Navbar><h2>Home</h2></Navbar>
+			<div className="block text-blue-500">
+				New Home Page!
+			</div>
 		</div>
 	)
 }

@@ -1,13 +1,191 @@
+@import "tailwindcss";
+
+:root {
+	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+
+	color-scheme: light;
+	color: var(--color-on-primary);
+	background-color: var(--color-background);
+
+	--color-primary: #393533;
+	--color-secondary: #948979;
+	--color-background: #efe7da;
+	--color-surface: #c7c1b0;
+	--color-error: #b00020;
+	--color-on-primary: #34312f;
+	/* for text/icons on primary background */
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+
+
+/* @media (prefers-color-scheme: dark) {
+	:root {
+		color: #213547;
+		background-color: #303030;
+	}
+
+	a:hover {
+		color: #747bff;
+	}
+
+	button {
+		background-color: #414141;
+	}
+} */
+
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+
+button {
+	display: flex;
+	align-items: center;
+	/* border-radius: 8px; */
+	border: none;
+	padding: 0;
+	margin: 0;
+	font-size: 1em;
+	font-weight: 500;
+	font-family: inherit;
+	background-color: transparent;
+	cursor: pointer;
+	transition: border-color 0.25s;
+}
+
+.material-icons {
+	color: var(--color-primary);
+}
+
+.button {
+	/* color: var(--color-primary); */
+	border-radius: 8px;
+	border: 1px solid transparent;
+	padding: 0.6em 1.2em;
+	font-size: 1em;
+	font-weight: 500;
+	font-family: inherit;
+	background-color: var(--color-surface);
+	cursor: pointer;
+	transition: border-color 0.25s;
+}
+
+.button:disabled {
+	opacity: 0.8;
+	cursor: auto;
+}
+
+.button:hover:not(:disabled) {
+	border-color: #646cff;
+}
+
+.button:active:not(:disabled) {
+	outline: 4px auto -webkit-focus-ring-color;
+}
+
+.flex {
+	--gap: 2rem;
+	display: flex;
+}
+
+.flex.gap {
+	gap: var(--gap);
+}
+
+.flex.row {
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.flex.col {
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.align-items-flex-start {
+	align-items: flex-start;
+}
+
+.align-items-center {
+	align-items: center;
+}
+
+.justify-content-center {
+	justify-content: center;
+}
+
+.justify-content-space-between {
+	justify-content: space-between;
+}
+
+.justify-content-flex-end {
+	justify-content: flex-end;
+}
+
+.block {
+	margin: 2rem 0;
+	padding: 0 2rem;
+}
+
+.margin-vertical {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.margin-top {
+	margin-top: 1rem;
+}
+
+.shadow-click {
+	position: relative;
+	z-index: 1;
+}
+
+button.shadow-click::after {
+	--size: 2px;
+}
+
+.popup-close span.shadow-click::after {
+	--size: 6px;
+}
+
+.shadow-click::after {
+	content: '';
+	position: absolute;
+	--size: 0px;
+	top: calc(-1 * var(--size));
+	left: calc(-1 * var(--size));
+	width: calc(100% + 2 * var(--size));
+	height: calc(100% + 2 * var(--size));
+	border-radius: 2rem;
+	background-color: rgba(0, 0, 0, 0.25);
+	opacity: 0;
+	transition: opacity 150ms;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.shadow-click:hover:not(:disabled)::after {
+	opacity: 1;
+}
+
+.shadow-click:active:not(:disabled)::after {
+	opacity: 0.7;
 }
