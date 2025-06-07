@@ -13,13 +13,13 @@ export default function Navbar({ children, homeLink }: { children: ReactNode, re
 	}
 
 	return (
-		<div className="header flex align-items-center" >
+		<div className="header d-flex align-items-center" >
 			<img src="/BudgetBuddy/Chill Budget Buddy Head.png" alt="Budget Buddy Head Logo" />
 			<div className='center'>
 				{children}
 			</div>
 			<button className='shadow-click' onClick={goHome}>
-				<span className='material-icons'>home</span>
+				<span className='material-symbols-rounded filled'>cottage</span>
 			</button>
 		</div>
 	)

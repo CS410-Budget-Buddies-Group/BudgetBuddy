@@ -1,0 +1,25 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$primary: #393533;
+$secondary: #978f82;
+$body-bg: #efe7da;
+$body-secondary-bg: #c7c1b0;
+
+$body-bg-dark: #3a372f;
+$body-secondary-bg-dark: #443b2d;
+
+$custom-theme-colors: (
+	"primary": $primary,
+	"secondary": $secondary
+);
+
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+// Now import Bootstrap manually
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+
+// Then include the rest of Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";

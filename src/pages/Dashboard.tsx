@@ -9,14 +9,17 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
+import '../css/Dashboard.css';
+import Navbar from "../components/Navbar";
+import { version } from '../../package.json';
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend);
 
 const Dashboard: React.FC = () => {
 	const [activeTab, setActiveTab] = useState("dashboard");
 
-	const [monthlyIncome, setMonthlyIncome] = useState<number[]>(Array(12).fill(0));
-	const [monthlyExpenses, setMonthlyExpenses] = useState<number[]>(Array(12).fill(0));
+	const [monthlyIncome, setMonthlyIncome] = useState<number[]>(Array(12).fill(0).map((e, i) => Math.random() * 5 + i));
+	const [monthlyExpenses, setMonthlyExpenses] = useState<number[]>(Array(12).fill(0).map((e, i) => Math.random() * 5 + i));
 
 	const [showIncome, setShowIncome] = useState(true);
 	const [showExpenses, setShowExpenses] = useState(true);
@@ -48,6 +51,7 @@ const Dashboard: React.FC = () => {
 
 	const chartOptions = {
 		responsive: true,
+		maintainAspectRatio: false,
 		plugins: {
 			legend: {
 				position: "top" as const,
@@ -72,61 +76,56 @@ const Dashboard: React.FC = () => {
 	};
 
 	return (
-		<div className="d-flex">
-			{/* Sidebar */}
-			<div className="sidebar bg-dark p-3" style={{ height: "100vh" }}>
-				<h4 className="mb-4">BudgetBuddy</h4>
-				<a href="#" className={`d-block text-light mb-2 ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>Dashboard</a>
-				<a href="#" className={`d-block text-light mb-2 ${activeTab === 'income' ? 'active' : ''}`} onClick={() => setActiveTab('income')}>Income</a>
-				<a href="#" className={`d-block text-light mb-2 ${activeTab === 'expenses' ? 'active' : ''}`} onClick={() => setActiveTab('expenses')}>Expenses</a>
-				<a href="#" className={`d-block text-light ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>Settings</a>
-			</div>
 
-			{/* Main Content */}
-			<div className="flex-grow-1">
-				{/* Top Navbar */}
-				<nav className="navbar navbar-expand navbar-light bg-white shadow-sm px-4">
-					<div className="container-fluid">
-						<span className="navbar-brand">Dashboard</span>
-						<div className="d-flex ms-auto align-items-center">
-							<span className="me-3">Hi, Kool  Kids 👋</span>
-							<img src="https://via.placeholder.com/30" alt="Profile" className="rounded-circle" />
-						</div>
-					</div>
-				</nav>
+		<div className="page-dashboard">
+			<Navbar><h2>Dashboard</h2></Navbar>
+			<div className="page-body d-flex flex-1" >
+				{/* Sidebar */}
+				<div className="sidebar d-flex flex-column gap-4 p-3 h-100">
+					<button className={`btn btn-secondary ${activeTab === 'dashboard' ? 'active' : ''}`} type="button" onClick={() => setActiveTab('dashboard')}>Dashboard</button>
+					<button className={`btn btn-secondary ${activeTab === 'income' ? 'active' : ''}`} onClick={() => setActiveTab('income')}>Income</button>
+					<button className={`btn btn-secondary ${activeTab === 'expenses' ? 'active' : ''}`} onClick={() => setActiveTab('expenses')}>Expenses</button>
+					<button className={`btn btn-secondary ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>Settings</button>
+					<span className="mt-auto">
+						v{version}
+					</span>
+				</div>
 
-				{/* Content Area */}
-				<div className="container-fluid mt-4">
-					{activeTab === "dashboard" && (
-						<>
-							<div className="row g-4">
-								{showIncome && (
-									<div className="col-md-4">
-										<div className="card shadow-sm p-3">
+				{/* Main Content */}
+				<div className="d-flex flex-grow-1">
+					{/* Top Navbar */}
+
+					{/* Content Area */}
+					<div className="container-fluid my-4 px-4">
+						{activeTab === "dashboard" && (
+							<>
+								<div className="d-flex flex-row gap-4 flex-wrap">
+									{showIncome && (
+										// <div className="">
+										<div className="card shadow-sm p-3 flex-1">
 											<h5>Total Income</h5>
-											<p className="fs-4 text-success">${totalIncome}</p>
+											<span className="fs-4 text-success">${totalIncome.toFixed(2)}</span>
 										</div>
-									</div>
-								)}
-								{showExpenses && (
-									<div className="col-md-4">
-										<div className="card shadow-sm p-3">
+										// </div>
+									)}
+									{showExpenses && (
+										// <div className="">
+										<div className="card shadow-sm p-3 flex-1">
 											<h5>Total Expenses</h5>
-											<p className="fs-4 text-danger">${totalExpenses}</p>
+											<p className="fs-4 text-danger">${totalExpenses.toFixed(2)}</p>
 										</div>
-									</div>
-								)}
-								{showYearlyTotals && (
-									<div className="col-md-4">
-										<div className="card shadow-sm p-3">
+										// </div>
+									)}
+									{showYearlyTotals && (
+										// <div className="">
+										<div className="card shadow-sm p-3 flex-1">
 											<h5>Savings</h5>
-											<p className="fs-4 text-primary">${savings}</p>
+											<p className="fs-4 text-primary">${savings.toFixed(2)}</p>
 										</div>
-									</div>
-								)}
-							</div>
-							<div className="row mt-5">
-								<div className="col-md-12 col-lg-8">
+										// </div>
+									)}
+								</div>
+								<div className="flex-row my-4">
 									<div className="card shadow-sm p-3">
 										<h5 className="mb-3">Monthly Overview</h5>
 										<div className="chart-container">
@@ -134,79 +133,86 @@ const Dashboard: React.FC = () => {
 										</div>
 									</div>
 								</div>
-							</div>
-						</>
-					)}
+							</>
+						)}
 
-					{activeTab === "income" && (
-						<div className="card p-4 shadow-sm">
-							<h5>Enter Monthly Income</h5>
-							{monthLabels.map((month, idx) => (
-								<div key={month} className="mb-2">
-									<label>{month}</label>
+						{activeTab === "income" && (
+							<div className="card p-4 shadow-sm">
+								<h5>Enter Monthly Income</h5>
+								{monthLabels.map((month, idx) => (
+									<div key={month} className="mb-2">
+										<label>
+											{month}
+											<input
+												name={month + '-input'}
+												type="number"
+												className="form-control"
+												value={monthlyIncome[idx]}
+												onChange={(e) => handleMonthlyChange("income", idx, Number(e.target.value))}
+											/>
+										</label>
+									</div>
+								))}
+							</div>
+						)}
+
+						{activeTab === "expenses" && (
+							<div className="card p-4 shadow-sm">
+								<h5>Enter Monthly Expenses</h5>
+								{monthLabels.map((month, idx) => (
+									<div key={month} className="mb-2">
+										<label>
+											{month}
+											<input
+												name={month + '-input'}
+												type="number"
+												className="form-control"
+												value={monthlyExpenses[idx]}
+												onChange={(e) => handleMonthlyChange("expense", idx, Number(e.target.value))}
+											/>
+										</label>
+
+									</div>
+								))}
+							</div>
+						)}
+
+						{activeTab === "settings" && (
+							<div className="card p-4 shadow-sm">
+								<h5>Display Settings</h5>
+								<div className="form-check">
 									<input
-										type="number"
-										className="form-control"
-										value={monthlyIncome[idx]}
-										onChange={(e) => handleMonthlyChange("income", idx, Number(e.target.value))}
+										type="checkbox"
+										className="form-check-input"
+										id="showIncome"
+										checked={showIncome}
+										onChange={() => setShowIncome(!showIncome)}
 									/>
+									<label className="form-check-label" htmlFor="showIncome">Show Income</label>
 								</div>
-							))}
-						</div>
-					)}
-
-					{activeTab === "expenses" && (
-						<div className="card p-4 shadow-sm">
-							<h5>Enter Monthly Expenses</h5>
-							{monthLabels.map((month, idx) => (
-								<div key={month} className="mb-2">
-									<label>{month}</label>
+								<div className="form-check">
 									<input
-										type="number"
-										className="form-control"
-										value={monthlyExpenses[idx]}
-										onChange={(e) => handleMonthlyChange("expense", idx, Number(e.target.value))}
+										type="checkbox"
+										className="form-check-input"
+										id="showExpenses"
+										checked={showExpenses}
+										onChange={() => setShowExpenses(!showExpenses)}
 									/>
+									<label className="form-check-label" htmlFor="showExpenses">Show Expenses</label>
 								</div>
-							))}
-						</div>
-					)}
-
-					{activeTab === "settings" && (
-						<div className="card p-4 shadow-sm">
-							<h5>Display Settings</h5>
-							<div className="form-check">
-								<input
-									type="checkbox"
-									className="form-check-input"
-									id="showIncome"
-									checked={showIncome}
-									onChange={() => setShowIncome(!showIncome)}
-								/>
-								<label className="form-check-label" htmlFor="showIncome">Show Income</label>
+								<div className="form-check">
+									<input
+										type="checkbox"
+										className="form-check-input"
+										id="showYearlyTotals"
+										checked={showYearlyTotals}
+										onChange={() => setShowYearlyTotals(!showYearlyTotals)}
+									/>
+									<label className="form-check-label" htmlFor="showYearlyTotals">Show Savings</label>
+								</div>
 							</div>
-							<div className="form-check">
-								<input
-									type="checkbox"
-									className="form-check-input"
-									id="showExpenses"
-									checked={showExpenses}
-									onChange={() => setShowExpenses(!showExpenses)}
-								/>
-								<label className="form-check-label" htmlFor="showExpenses">Show Expenses</label>
-							</div>
-							<div className="form-check">
-								<input
-									type="checkbox"
-									className="form-check-input"
-									id="showYearlyTotals"
-									checked={showYearlyTotals}
-									onChange={() => setShowYearlyTotals(!showYearlyTotals)}
-								/>
-								<label className="form-check-label" htmlFor="showYearlyTotals">Show Savings</label>
-							</div>
-						</div>
-					)}
+						)}
+					</div>
 				</div>
 			</div>
 		</div>

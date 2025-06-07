@@ -1,0 +1,26 @@
+/* Dashboard.css */
+.card-title {
+	font-weight: bold;
+}
+
+.page-dashboard {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.page-body {
+	overflow-y: hidden;
+}
+
+.page-body>div {
+	overflow-y: auto;
+}
+
+.sidebar {
+	background-color: var(--bs-secondary-bg);
+}
+
+.chart-container {
+	min-height: 250px;
+}

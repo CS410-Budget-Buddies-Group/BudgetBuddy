@@ -1,10 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './css/index.css';
-// import './css/output.css';
+import './css/index.scss';
 import Router from './Router'
-// import reportWebVitals from './reportWebVitals';
+import 'material-symbols';
 import 'material-icons/iconfont/material-icons.css';
+// import reportWebVitals from './reportWebVitals';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
