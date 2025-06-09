@@ -1,6 +1,3 @@
-@import "../../node_modules/bootstrap/scss/functions";
-@import "../../node_modules/bootstrap/scss/variables";
-
 $primary: #393533;
 $secondary: #978f82;
 $body-bg: #efe7da;
@@ -9,11 +6,17 @@ $body-secondary-bg: #c7c1b0;
 $body-bg-dark: #3a372f;
 $body-secondary-bg-dark: #443b2d;
 
+// $input-border-color: lighten($primary, 35%);
+
 $custom-theme-colors: (
 	"primary": $primary,
 	"secondary": $secondary
 );
 
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$input-border-color: $card-border-color;
 $theme-colors: map-merge($theme-colors, $custom-theme-colors);
 
 // Now import Bootstrap manually

@@ -59,6 +59,7 @@
 		"autoprefixer": "^10.4.21",
 		"postcss": "^8.5.4",
 		"sass": "^1.78.0",
+		"sass-embedded": "^1.89.2",
 		"tailwindcss": "^4.1.8",
 		"vite": "^6.3.5"
 	}

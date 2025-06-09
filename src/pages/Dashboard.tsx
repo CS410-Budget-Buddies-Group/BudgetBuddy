@@ -140,7 +140,7 @@ const Dashboard: React.FC = () => {
 							<div className="card p-4 shadow-sm">
 								<h5>Enter Monthly Income</h5>
 								{monthLabels.map((month, idx) => (
-									<div key={month} className="mb-2">
+									<div key={month} className="mb-2 form-group">
 										<label>
 											{month}
 											<input
