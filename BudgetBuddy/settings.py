@@ -15,6 +15,10 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_URL = '/assets/'  # this should match what the frontend expects
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'dist', 'assets'),
+]
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +30,11 @@ SECRET_KEY = 'django-insecure-&@(kkc)&6zbv)m=vl6wb)f++_*kqb(gu-&c$p^u)laeqa*00!0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "127.0.0.1:8000",
+]
 
 
 # Application definition
@@ -57,7 +65,10 @@ ROOT_URLCONF = 'BudgetBuddy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'dist'),  # Add your Vite build output here
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,7 +92,7 @@ DATABASES = {
         'NAME': 'budgetbuddy',
         'USER': 'admin',
         'PASSWORD': 'RyRy3030!',
-        'HOST': '127.0.0.1',
+        'HOST': 'budgetbuddy-db.cxg6qcw6a4n3.us-west-2.rds.amazonaws.com',
         'PORT': '3306',
         'OPTIONS': {
             'ssl': {'ssl-mode': 'DISABLED'},

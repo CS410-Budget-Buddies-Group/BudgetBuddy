@@ -5,16 +5,19 @@ import tailwindcss from '@tailwindcss/vite'; // Import tailwindcss
 
 
 export default defineConfig({
-	base: '/BudgetBuddy',
 	plugins: [
 		react(),
 		tailwindcss(),
 		viteStaticCopy({
 			targets: [
 				{
-					src: '404.html',
-					dest: '.' // Copies to root of dist
-				}
+					src: 'public/*',
+					dest: 'assets' // copy to dist/assets/
+				},
+				// 		{
+				// 			src: '404.html',
+				// 			dest: '.' // Copies to root of dist
+				// 		}
 			]
 		})
 	],

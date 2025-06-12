@@ -14,7 +14,7 @@ export default function Navbar({ children, homeLink }: { children: ReactNode, re
 
 	return (
 		<div className="header d-flex align-items-center" >
-			<img src="/BudgetBuddy/Chill Budget Buddy Head.png" alt="Budget Buddy Head Logo" />
+			<img src="/assets/Chill_Budget_Buddy_Head.png" alt="Budget Buddy Head Logo" />
 			<div className='center'>
 				{children}
 			</div>
