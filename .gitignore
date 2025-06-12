@@ -10,7 +10,7 @@
 
 # production
 /build
-/dist
+# /dist
 
 # misc
 .DS_Store
@@ -24,4 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Python Cache
-__pycache__
+**/__pycache__
+
+# Python Environment
+venv
