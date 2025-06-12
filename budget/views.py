@@ -1,6 +1,7 @@
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import render
 from .models import User
 from .serializers import UserSerializer
 
@@ -15,3 +16,6 @@ class UserViewSet(ListAPIView):
             user = serializer.save()
             return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+def index(request):
+    return render(request, 'index.html')
