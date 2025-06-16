@@ -30,6 +30,9 @@ SECRET_KEY = 'django-insecure-&@(kkc)&6zbv)m=vl6wb)f++_*kqb(gu-&c$p^u)laeqa*00!0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Allow all origins (for development)
+CORS_ALLOW_ALL_ORIGINS = True
+
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'budget',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'BudgetBuddy.urls'

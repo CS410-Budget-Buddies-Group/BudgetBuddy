@@ -33,7 +33,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        # if (validated_data.pop('expense')): 
+        # if (validated_data.pop('expense')):
         #     expense_data = validated_data.pop('expense')
         #     expense = Expense.objects.create(**expense_data)
         # if (validated_data.pop('job')):
