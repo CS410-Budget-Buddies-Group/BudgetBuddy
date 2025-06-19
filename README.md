@@ -1,8 +1,5 @@
 # Budget-Buddy
 A budget tracking app!
 
-
-## Python installs
-pip install django
-pip install djangorestframework
-pip install pymysql
+## Installations
+Use `npm i` and `pip install -r requirements.txt` to install all required packages.
