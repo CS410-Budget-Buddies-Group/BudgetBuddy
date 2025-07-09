@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -91,14 +92,15 @@ WSGI_APPLICATION = 'BudgetBuddy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+load_dotenv('.env.secret')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'budgetbuddy',
-        'USER': 'admin',
-        'PASSWORD': 'RyRy3030!',
-        'HOST': 'budgetbuddy-db.cxg6qcw6a4n3.us-west-2.rds.amazonaws.com',
-        'PORT': '3306',
+        'NAME': os.environ.get('DB_NAME', 'budgetbuddy'),
+        'USER': os.environ.get('DB_USER', 'admin'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', ''),
+        'PORT': os.environ.get('DB_PORT', '3306'),
         'OPTIONS': {
             'ssl': {'ssl-mode': 'DISABLED'},
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",

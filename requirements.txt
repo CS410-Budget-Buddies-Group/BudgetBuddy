@@ -4,3 +4,4 @@ mysql_connector_repackaged==0.3.1
 pymysql==1.1.1
 djangorestframework
 django-cors-headers
+python-dotenv
